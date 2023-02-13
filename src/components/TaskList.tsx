@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const tasks = Array.from({ length: 10 }, (_, i) => ({
   id: i,
-  name: "Task " + i,
+  name: `Task ${i}`,
   completed: false,
 }));
 
@@ -16,7 +16,7 @@ export function TaskList() {
         {tasks.map((task, index) => (
           <div key={task.id} className="flex flex-col">
             <Task {...task} />
-            <Separator className="my-4" />
+            {index !== tasks.length - 1 && <Separator className="my-4" />}
           </div>
         ))}
       </div>

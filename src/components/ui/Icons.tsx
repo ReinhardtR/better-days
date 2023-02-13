@@ -1,4 +1,4 @@
-interface IconProps extends React.HTMLAttributes<SVGElement> {}
+type IconProps = React.HTMLAttributes<SVGElement>;
 
 export function GoogleLogo(props: IconProps) {
   return (

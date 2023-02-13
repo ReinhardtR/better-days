@@ -1,8 +1,6 @@
 import { Angry, Frown, Laugh, Meh, Smile } from "lucide-react";
 import { useState } from "react";
 import { MoodState } from "@prisma/client";
-import { Toggle } from "./ui/Toggle";
-import clsx from "clsx";
 import { classNames } from "~/utils/classNames";
 
 const MOOD_OPTIONS = [
@@ -42,7 +40,6 @@ export function Mood() {
         <MoodOption
           key={option.mood}
           className={option.colorClasses}
-          mood={option.mood}
           Icon={option.Icon}
           isSelected={mood === option.mood}
           onClick={() => setMood(option.mood)}
@@ -53,13 +50,11 @@ export function Mood() {
 }
 
 interface MoodOptionProps extends React.HTMLAttributes<SVGElement> {
-  mood: MoodState;
   Icon: React.ComponentType<React.ComponentProps<"svg">>;
   isSelected: boolean;
 }
 
 function MoodOption({
-  mood,
   Icon,
   isSelected,
   className,

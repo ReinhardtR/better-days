@@ -16,8 +16,7 @@ const Home: NextPage = () => {
             <CardWithTitle title="Overview">
               <div className="flex h-full items-center justify-center">
                 <p className="text-xl font-semibold">
-                  {" "}
-                  What's up Reinhardt? 👋
+                  What&apos;s up Reinhardt? 👋
                 </p>
               </div>
             </CardWithTitle>

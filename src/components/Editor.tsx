@@ -1,4 +1,4 @@
-import { DropdownMenuItemProps } from "@radix-ui/react-dropdown-menu";
+import { type DropdownMenuItemProps } from "@radix-ui/react-dropdown-menu";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { StarterKit } from "@tiptap/starter-kit";
 import {
@@ -161,8 +161,11 @@ function TypographyMenu({ editor }: TypographyMenuProps) {
   const heading = editor.isActive("heading");
 
   if (heading) {
-    const level = editor.getAttributes("heading")?.level;
-    selectedOptionName = `Heading ${level}`;
+    const level = editor.getAttributes("heading")?.level as number | undefined;
+
+    if (level) {
+      selectedOptionName = `Heading ${level}`;
+    }
   }
 
   return (

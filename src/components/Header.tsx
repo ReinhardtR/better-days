@@ -40,7 +40,11 @@ function AuthInfoContainer() {
       )}
 
       {session.status === "unauthenticated" && (
-        <Button onClick={() => signIn("google")}>
+        <Button
+          onClick={() => {
+            signIn("google").catch(console.log);
+          }}
+        >
           Sign in <LogIn className="ml-2 h-4 w-4" />
         </Button>
       )}
@@ -65,7 +69,11 @@ function AuthInfoContainer() {
             <DropdownMenuLabel>My account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={() => {
+                  signOut().catch(console.log);
+                }}
+              >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Sign out</span>
               </DropdownMenuItem>
