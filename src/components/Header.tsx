@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Loader2, LogIn, LogOut } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getWindow } from "~/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
@@ -42,7 +43,9 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex h-16 items-center px-4">
-        <p className="text-lg font-bold">Better Days</p>
+        <Link href="/">
+          <p className="text-lg font-semibold">Better Days</p>
+        </Link>
         <div className="ml-auto">
           <AuthInfoContainer />
         </div>
@@ -78,7 +81,7 @@ function AuthInfoContainer() {
       {session.status === "authenticated" && (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex space-x-2 p-6">
+            <Button variant="ghost" className="flex space-x-3 p-6">
               <p className="text-md font-semibold">{session.data.user.name}</p>
               <Avatar>
                 <AvatarImage

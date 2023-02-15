@@ -26,12 +26,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </Head>
 
       <style jsx global>{`
-				:root {
-					--font-sans: ${fontSans.style.fontFamily};
-				}
-			}`}</style>
+        :root {
+          --font-sans: ${fontSans.style.fontFamily};
+        }
+      `}</style>
 
-      <ThemeProvider attribute="class">
+      <ThemeProvider attribute="class" disableTransitionOnChange>
         <SessionProvider session={session}>
           <div className="flex min-h-screen flex-col">
             <Component {...pageProps} />
