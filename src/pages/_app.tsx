@@ -4,11 +4,11 @@ import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
 import { api } from "../utils/api";
 import { ThemeProvider } from "next-themes";
-import { Inter } from "@next/font/google";
-import "../styles/globals.css";
-import clsx from "clsx";
+import { Inter as FontSans } from "@next/font/google";
 
-const fontSans = Inter({
+import "~/styles/globals.css";
+
+const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -24,14 +24,16 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <title>Better Days</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <style jsx global>{`
+				:root {
+					--font-sans: ${fontSans.style.fontFamily};
+				}
+			}`}</style>
+
       <ThemeProvider attribute="class">
         <SessionProvider session={session}>
-          <div
-            className={clsx(
-              "flex min-h-screen flex-col font-sans",
-              fontSans.variable
-            )}
-          >
+          <div className="flex min-h-screen flex-col">
             <Component {...pageProps} />
           </div>
         </SessionProvider>

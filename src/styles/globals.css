@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  @apply font-sans;
-}
-
 body {
-  @apply min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50;
+  @apply dark:bg-slate-900 dark:text-slate-50 min-h-screen bg-white text-slate-900 antialiased;
 }
