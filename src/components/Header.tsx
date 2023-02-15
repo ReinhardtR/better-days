@@ -1,5 +1,8 @@
+import clsx from "clsx";
 import { Loader2, LogIn, LogOut } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { getWindow } from "~/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
 import { Button } from "./ui/Button";
 import {
@@ -13,8 +16,31 @@ import {
 } from "./ui/DropdownMenu";
 
 export function Header() {
+  const [isAtTop, setIsAtTop] = useState(true);
+  const window = getWindow();
+
+  function onScroll() {
+    if ((getWindow()?.pageYOffset || 0) < 16) setIsAtTop(true);
+    else if (isAtTop) setIsAtTop(false);
+  }
+
+  useEffect(() => {
+    if (!window) return;
+    setTimeout(onScroll, 0);
+    getWindow()?.addEventListener("scroll", onScroll);
+    return () => getWindow()?.removeEventListener("scroll", onScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
+    <header
+      className={clsx(
+        "sticky top-0 z-40 w-full border-b transition",
+        isAtTop
+          ? "border-b-transparent bg-transparent"
+          : "border-b-slate-200 bg-white/50 backdrop-blur dark:border-b-slate-700 dark:bg-slate-900/50"
+      )}
+    >
       <div className="container mx-auto flex h-16 items-center px-4">
         <p className="text-lg font-bold">Better Days</p>
         <div className="ml-auto">
