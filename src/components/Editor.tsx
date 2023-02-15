@@ -24,7 +24,13 @@ import { Toggle } from "./ui/Toggle";
 
 export default function Editor() {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
+    ],
     content: "Hi",
     editorProps: {
       attributes: {
@@ -114,9 +120,6 @@ const TYPOGRAPHY_OPTIONS = {
   h1: "Heading 1",
   h2: "Heading 2",
   h3: "Heading 3",
-  h4: "Heading 4",
-  h5: "Heading 5",
-  h6: "Heading 6",
 } as const;
 
 type TypographyOptionElement = keyof typeof TYPOGRAPHY_OPTIONS;
@@ -207,7 +210,7 @@ function TypographyMenuItem({
 }: TypographyMenuItemProps) {
   return (
     <DropdownMenuItem
-      className="prose-sm prose-slate h-10 font-sans dark:prose-invert"
+      className="prose prose-slate h-12 dark:prose-invert"
       {...props}
     >
       {createElement(
@@ -236,17 +239,5 @@ const TYPOGRAPHY_OPTIONS_EDITOR_MAP = {
   h3: {
     type: "heading",
     level: 3,
-  },
-  h4: {
-    type: "heading",
-    level: 4,
-  },
-  h5: {
-    type: "heading",
-    level: 5,
-  },
-  h6: {
-    type: "heading",
-    level: 6,
   },
 } as const;
